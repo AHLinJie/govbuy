@@ -5,7 +5,7 @@
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
 #
-#     http://doc.scrapy.org/en/latest/topics/settings.html
+# http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
@@ -19,8 +19,10 @@ NEWSPIDER_MODULE = 'govbuy.spiders'
 #USER_AGENT = 'govbuy (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
-
+ROBOTSTXT_OBEY = False
+ITEM_PIPELINES = {
+    'govbuy.pipelines.GovbuyPipeline': 300,
+}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
