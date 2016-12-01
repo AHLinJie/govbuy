@@ -4,6 +4,12 @@
 # scrapy crawl dmoz -o items.json -t json 写数据到json文件
 import scrapy
 
+from scrapy_djangoitem import DjangoItem
+import pdb
+
+# pdb.set_trace()
+from nimei.models import HostInfo
+
 
 def serialize_test(value):
     return 'test-%s' % value
@@ -17,3 +23,7 @@ class GovbuyItem(scrapy.Item):
 
 class DmozItem(scrapy.Item):
     title = scrapy.Field(serializer=serialize_test)
+
+
+class HostInfoItem(DjangoItem):
+    django_model = HostInfo

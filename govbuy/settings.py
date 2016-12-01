@@ -6,8 +6,8 @@
 # commonly used. You can find more settings consulting the documentation:
 #
 # http://doc.scrapy.org/en/latest/topics/settings.html
-#     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+# http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
+# http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
 BOT_NAME = 'govbuy'
 
@@ -23,6 +23,12 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
     'govbuy.pipelines.GovbuyPipeline': 300,
 }
+import sys
+import os
+sys.path.append('/home/jishu_linjie/shdir/gov-bussiness/fuck')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'nanad.settings'
+import django
+django.setup()
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

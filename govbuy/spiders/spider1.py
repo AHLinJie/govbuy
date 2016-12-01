@@ -4,6 +4,7 @@ import logging
 import scrapy
 
 logger = logging.getLogger(__name__)
+from ..items import HostInfoItem
 
 
 class GovBuySpider(scrapy.Spider):
@@ -18,14 +19,19 @@ class GovBuySpider(scrapy.Spider):
             yield scrapy.Request(url=url.format(self.host), callback=self.prase)
 
     def prase(self, response):
-        filename = 'test.html'
+        # filename = 'test.html'
         links = response.xpath('//li[re:test(@class, "mc$")]//a')
         for index, link in enumerate(links):
             shref = link.xpath('@href').extract()
             sname = link.xpath('text()').extract()
+
             href = shref[0] if shref else None
             name = sname[0].strip() if sname else None
             print u'name: %s \n url: %s ' % (name, href)
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('save file %s' % filename)
+            x = HostInfoItem()
+            x['name'] = name
+            x.save()
+
+        # with open(filename, 'wb') as f:
+        #     f.write(response.body)
+        # self.log('save file %s' % filename)
