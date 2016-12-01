@@ -7,18 +7,12 @@
 from scrapy.exceptions import DropItem
 from scrapy import signals
 from scrapy.contrib.exporter import JsonItemExporter
-import OleFileIO_PL
 import subprocess
-import chardet
 
-ole = OleFileIO_PL.OleFileIO('20161130085396939693.doc')
 # sudo apt-get install antiword // 使用　antiword　来处理输出world文档
 process = subprocess.Popen(['antiword', '20161130085396939693.doc'], stdout=subprocess.PIPE)
 out, err = process.communicate()
 print out
-
-
-chardet.detect(out)
 
 
 class GovbuyPipeline(object):
